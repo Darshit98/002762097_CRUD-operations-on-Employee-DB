@@ -16,17 +16,15 @@ import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.RowFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 import model.Employee;
 
 /**
  *
  * @author darsh
  */
-public class MainJFrameEmployee extends javax.swing.JFrame {
+public class ImageTry extends javax.swing.JFrame {
 
     /**
      * Creates new form MainJFrameEmployee
@@ -34,8 +32,7 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
     String gender;
     Employee employee;
     String imgPath;
-    Image icon;
-    public MainJFrameEmployee() {
+    public ImageTry() {
         initComponents();
         //this.employee = employee;
     }
@@ -81,8 +78,6 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
         javax.swing.JButton btnDelete = new javax.swing.JButton();
         javax.swing.JButton btnUpdate = new javax.swing.JButton();
         lblImage = new javax.swing.JLabel();
-        lblSearch = new javax.swing.JLabel();
-        txtSearch = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(153, 255, 255));
@@ -183,7 +178,7 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "Emp ID", "Age", "Gender", "StartDate", "Level", "TeamInfo", "Position Title", "Phone", "Email ID"
+                "Name", "Emp ID", "Age", "Gender", "StartDate", "Level", "TeamInfo", "Position Title", "Phone", "Email ID", "Image"
             }
         ));
         tblempRecords.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -206,14 +201,6 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
-            }
-        });
-
-        lblSearch.setText("Search Employee Record:");
-
-        txtSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSearchActionPerformed(evt);
             }
         });
 
@@ -263,15 +250,11 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(btnUpdate)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblSearch)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnDelete))
-                                    .addComponent(jScrollPane1)))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(37, 37, 37)
                                 .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -340,10 +323,7 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtEmailId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnUpdate)
-                                    .addComponent(lblSearch)
-                                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnUpdate)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtTeamInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
@@ -399,10 +379,9 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
         }
         else
         {
-            
         
         DefaultTableModel model = (DefaultTableModel) tblempRecords.getModel();
-        model.addRow(new Object[]{name, empId, age, gender, startDate, level, teamInfo,position, phone, emailId});
+        model.addRow(new Object[]{name, empId, age, gender, startDate, level, teamInfo,position, phone, emailId, imgPath});
 
         JFileChooser browseImgFile = new JFileChooser();
         FileNameExtensionFilter filename = new FileNameExtensionFilter("IMAGES", "png","jpeg","jpg");
@@ -421,7 +400,6 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
         txtContact.setText("");
         txtTeamInfo.setText("");
         txtPositionTitle.setText("");
-        lblImage.setIcon(null);
         //starrtDate.setDateFormatString("");
         //imgPath.
         //rbtnGender.clearSelection();
@@ -434,11 +412,6 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
         
         JFileChooser browseImgFile = new JFileChooser();
         
-//        FileNameExtensionFilter filename = new FileNameExtensionFilter("IMAGES", "png","jpeg","jpg");
-//        browseImgFile.addChoosableFileFilter(filename);
-        //JFileChooser browseImgFile = new JFileChooser();
-        
-        
         int showOpenDialog = browseImgFile.showOpenDialog(null);
         if (showOpenDialog == JFileChooser.APPROVE_OPTION)
         {
@@ -447,13 +420,11 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, imgPath);
         }
         
-        
     }//GEN-LAST:event_btnImageActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         int selectRow = tblempRecords.getSelectedRow();
-        
         if (selectRow<0)
         {
             JOptionPane.showMessageDialog(this, "Please select a Row to delete record");
@@ -503,14 +474,6 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
             model.setValueAt (phone, tblempRecords.getSelectedRow(), 8);
             model.setValueAt (emailId, tblempRecords.getSelectedRow(), 9);
             
-//            JFileChooser browseImgFile = new JFileChooser();
-//            FileNameExtensionFilter filename = new FileNameExtensionFilter("IMAGES", "png","jpeg","jpg");
-//            browseImgFile.addChoosableFileFilter(filename);
-//            Image img = icon.getImage().getScaledInstance(lblImage.getWidth(),lblImage.getHeight(), Image.SCALE_SMOOTH);
-//            lblImage.setIcon(new ImageIcon(img));
-        
-            
-            
             JOptionPane.showMessageDialog(this, "Employee Record Updated..!!");
         
         }
@@ -519,7 +482,9 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
     private void tblempRecordsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblempRecordsMouseClicked
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) tblempRecords.getModel();
+        
         int i = tblempRecords.getSelectedRow();
+        
         txtName.setText(model.getValueAt(i, 0).toString());
         txtEmpID.setText(model.getValueAt(i, 1).toString());
         txtAge.setText(model.getValueAt(i, 2).toString());
@@ -530,12 +495,15 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
         txtPositionTitle.setText(model.getValueAt(i, 7).toString());
         txtContact.setText(model.getValueAt(i, 8).toString());
         txtEmailId.setText(model.getValueAt(i, 9).toString());
+        //imgPath.setText(model.getValueAt(i, 10).toString());
         
-        JFileChooser browseImgFile = new JFileChooser();
-        FileNameExtensionFilter filename = new FileNameExtensionFilter("IMAGES", "png","jpeg","jpg");
-        browseImgFile.addChoosableFileFilter(filename);
-        ImageIcon icon = new ImageIcon(model.getValueAt(i, 10).toString());
-        
+//        JFileChooser browseImgFile = new JFileChooser();
+//        FileNameExtensionFilter filename = new FileNameExtensionFilter("IMAGES", "png","jpeg","jpg");
+//        browseImgFile.addChoosableFileFilter(filename);
+//        
+//        ImageIcon icon = new ImageIcon(imgPath);
+//        Image photo = icon.getImage().getScaledInstance(lblImage.getWidth(),lblImage.getHeight(), Image.SCALE_SMOOTH);
+//        lblImage.setIcon(new ImageIcon(photo));
     }//GEN-LAST:event_tblempRecordsMouseClicked
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -585,14 +553,6 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowOpened
 
-    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) tblempRecords.getModel();
-        TableRowSorter<DefaultTableModel> trs = new TableRowSorter<DefaultTableModel>(model);
-        tblempRecords.setRowSorter(trs);
-        trs.setRowFilter(RowFilter.regexFilter(txtSearch.getText().trim()));
-    }//GEN-LAST:event_txtSearchActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -602,7 +562,7 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainJFrameEmployee().setVisible(true);
+                new ImageTry().setVisible(true);
             }
         });
     }
@@ -610,7 +570,6 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnImage;
     private javax.swing.JLabel lblImage;
-    private javax.swing.JLabel lblSearch;
     private javax.swing.JRadioButton rbtnFemale;
     private javax.swing.ButtonGroup rbtnGender;
     private javax.swing.JRadioButton rbtnMale;
@@ -624,7 +583,6 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
     private javax.swing.JTextField txtLevel;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPositionTitle;
-    private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtTeamInfo;
     // End of variables declaration//GEN-END:variables
 }
