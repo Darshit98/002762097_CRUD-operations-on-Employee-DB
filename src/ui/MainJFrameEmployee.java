@@ -21,11 +21,10 @@ import javax.swing.RowFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import model.Employee;
 
 /**
  *
- * @author darsh
+ * @author darshit
  */
 public class MainJFrameEmployee extends javax.swing.JFrame {
 
@@ -383,7 +382,6 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
         
         JLabel imgg = new JLabel();
         ImageIcon icon = new ImageIcon(imgPath);
-        //Image img = icon.getImage();
         imgg.setIcon(icon);
         
         String name= txtName.getText();
@@ -397,25 +395,15 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
         SimpleDateFormat sDate = new SimpleDateFormat("YYYY-MM-dd");
         String startDate = String.valueOf(sDate.format(starrtDate.getDate()));
         
-        
-        
-        if(name.isEmpty() || emailId.isEmpty() || level.isEmpty() || teamInfo.isEmpty() || position.isEmpty() || startDate.isEmpty())
+        if(!(emailId.contains("@"))||!((emailId.endsWith(".com")) ||(emailId.endsWith(".edu")))||name.isBlank()||level.isBlank()||teamInfo.isBlank()||position.isBlank()||startDate.isBlank())
         {
             JOptionPane.showMessageDialog(this, "Please enter all fields");
         }
         else
         {
-            
         
             model = (DefaultTableModel) tblempRecords.getModel();
             model.addRow(new Object[]{name, empId, age, gender, startDate, level, teamInfo,position, phone, emailId,icon});
-
-//            JFileChooser browseImgFile = new JFileChooser();
-//            FileNameExtensionFilter filename = new FileNameExtensionFilter("IMAGES", "png","jpeg","jpg");
-//            browseImgFile.addChoosableFileFilter(filename);
-//            ImageIcon icon = new ImageIcon(imgPath);
-//            Image img = icon.getImage().getScaledInstance(lblImage.getWidth(),lblImage.getHeight(), Image.SCALE_SMOOTH);
-//            lblImage.setIcon(new ImageIcon(img));
 
             JOptionPane.showMessageDialog(this, "Employee Record Saved..!!");
 
@@ -429,17 +417,11 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
             txtPositionTitle.setText("");
             lblImage.setIcon(null);
             rbtnGender.clearSelection();
-    //        lblImage.setIcon(null);
-            //starrtDate.setDateFormatString("");
-            //imgPath.
-            //rbtnGender.clearSelection();
-        }
-        
+        } 
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImageActionPerformed
         // TODO add your handling code here:
-        
         JFileChooser browseImgFile = new JFileChooser();
          
         int showOpenDialog = browseImgFile.showOpenDialog(null);
@@ -449,8 +431,6 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
             imgPath = selectFileImg.getAbsolutePath();
             JOptionPane.showMessageDialog(null, imgPath);
         }
-        
-        
     }//GEN-LAST:event_btnImageActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -491,8 +471,6 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
             long phone = Long.parseLong(txtContact.getText());
             SimpleDateFormat sDate = new SimpleDateFormat("YYYY-MM-dd");
             String startDate = String.valueOf(sDate.format(starrtDate.getDate()));
-            //System.out.println(startDate);
-            //String photo = btnImage.getText();
        
             model.setValueAt (name, tblempRecords.getSelectedRow(), 0);
             model.setValueAt (empId, tblempRecords.getSelectedRow(), 1);
@@ -504,30 +482,18 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
             model.setValueAt (position, tblempRecords.getSelectedRow(), 7);
             model.setValueAt (phone, tblempRecords.getSelectedRow(), 8);
             model.setValueAt (emailId, tblempRecords.getSelectedRow(), 9);
-            
-//            JFileChooser browseImgFile = new JFileChooser();
-//            FileNameExtensionFilter filename = new FileNameExtensionFilter("IMAGES", "png","jpeg","jpg");
-//            browseImgFile.addChoosableFileFilter(filename);
-//            Image img = icon.getImage().getScaledInstance(lblImage.getWidth(),lblImage.getHeight(), Image.SCALE_SMOOTH);
-//            lblImage.setIcon(new ImageIcon(img));
         
             JFileChooser browseImgFile = new JFileChooser();
             FileNameExtensionFilter filename = new FileNameExtensionFilter("IMAGES", "png","jpeg","jpg");
             browseImgFile.addChoosableFileFilter(filename);
-            
-            //can comment again
+
             JLabel imgg = new JLabel();
             ImageIcon icon = new ImageIcon(imgPath);
-            //Image img = icon.getImage();
             imgg.setIcon(icon);
-            
-            //Image img = icon.getScaledInstance(lblImage.getWidth(),lblImage.getHeight(), Image.SCALE_SMOOTH);
-            //lblImage.setIcon(null);
             
             model.setValueAt(icon, tblempRecords.getSelectedRow(), 10);
             
             JOptionPane.showMessageDialog(this, "Employee Record Updated..!!");
-        
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -538,8 +504,7 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
         txtName.setText(model.getValueAt(i, 0).toString());
         txtEmpID.setText(model.getValueAt(i, 1).toString());
         txtAge.setText(model.getValueAt(i, 2).toString());
-        //rbtnGender.setText(model.getValueAt(i, 3).toString());
-        //starrtDate.setText(model.getValueAt(i, 4).toString());
+
         if("Male".equals(model.getValueAt(i, 3)))
             {
                     rbtnMale.setSelected(true);
@@ -559,70 +524,64 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
         txtContact.setText(model.getValueAt(i, 8).toString());
         txtEmailId.setText(model.getValueAt(i, 9).toString());
         
-        
         imgPath = model.getValueAt(i, 10).toString();
         ImageIcon icon = new ImageIcon(imgPath);
        
         Image img = icon.getImage().getScaledInstance(lblImage.getWidth(), lblImage.getHeight(),Image.SCALE_SMOOTH);
         lblImage.setIcon(new ImageIcon(img));
         
-//        JFileChooser browseImgFile = new JFileChooser();
-//        FileNameExtensionFilter filename = new FileNameExtensionFilter("IMAGES", "png","jpeg","jpg");
-//        browseImgFile.addChoosableFileFilter(filename);
-//        ImageIcon icon = new ImageIcon(model.getValueAt(i, 10).toString());
-        
     }//GEN-LAST:event_tblempRecordsMouseClicked
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-//        DefaultTableModel model = (DefaultTableModel) tblempRecords.getModel();
-//        Vector<Vector> empdata = model.getDataVector();
-//        
-//        try
-//        {
-//            FileOutputStream empfile = new FileOutputStream("empfile.bin");
-//            ObjectOutputStream output = new ObjectOutputStream(empfile);
-//            
-//            output.writeObject(empdata);
-//            
-//            output.close();
-//            empfile.close();
-//        }
-//        catch(Exception e)
-//        {
-//            e.printStackTrace();
-//        }
+        DefaultTableModel model = (DefaultTableModel) tblempRecords.getModel();
+        Vector<Vector> empdata = model.getDataVector();
+        
+        try
+        {
+            FileOutputStream empfile = new FileOutputStream("empfile.bin");
+            ObjectOutputStream output = new ObjectOutputStream(empfile);
+            
+            output.writeObject(empdata);
+            
+            output.close();
+            empfile.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_formWindowClosing
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-//        try
-//        {
-//            FileInputStream empfile = new FileInputStream("empfile.bin");
-//            ObjectInputStream input = new ObjectInputStream(empfile);
-//            
-//            Vector<Vector> empdata = (Vector<Vector>)input.readObject();
-//            
-//            input.close();
-//            empfile.close();
-//            
-//            DefaultTableModel model = (DefaultTableModel) tblempRecords.getModel();
-//            for(int i=0; i<empdata.size();i++)
-//            {
-//                Vector row = empdata.get(i);
-//                model.addRow(new Object[]{row.get(0),row.get(1),row.get(2),row.get(3),row.get(4),row.get(5),row.get(6),row.get(7),row.get(8),row.get(9)});
-//            }
-//            
-//        }
-//        catch(Exception e)
-//        {
-//            e.printStackTrace();
-//        }
+        try
+        {
+            FileInputStream empfile = new FileInputStream("empfile.bin");
+            ObjectInputStream input = new ObjectInputStream(empfile);
+            
+            Vector<Vector> empdata = (Vector<Vector>)input.readObject();
+            
+            input.close();
+            empfile.close();
+            
+            DefaultTableModel model = (DefaultTableModel) tblempRecords.getModel();
+            for(int i=0; i<empdata.size();i++)
+            {
+                Vector row = empdata.get(i);
+                model.addRow(new Object[]{row.get(0),row.get(1),row.get(2),row.get(3),row.get(4),row.get(5),row.get(6),row.get(7),row.get(8),row.get(9),row.get(10)});
+            }
+            
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) tblempRecords.getModel();
+        model = (DefaultTableModel) tblempRecords.getModel();
         TableRowSorter<DefaultTableModel> trs = new TableRowSorter<DefaultTableModel>(model);
         tblempRecords.setRowSorter(trs);
         trs.setRowFilter(RowFilter.regexFilter(txtSearch.getText().trim()));
