@@ -8,7 +8,6 @@ import java.awt.Image;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
@@ -85,7 +84,7 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
         txtSearch = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(153, 255, 255));
+        setBackground(new java.awt.Color(204, 204, 255));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -94,6 +93,10 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
+
+        txtTeamInfo.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+
+        txtPositionTitle.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
 
         lblName.setForeground(new java.awt.Color(0, 0, 204));
         lblName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -120,6 +123,7 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
         lblLevel.setText("Level:");
 
         rbtnGender.add(rbtnMale);
+        rbtnMale.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         rbtnMale.setForeground(new java.awt.Color(0, 51, 204));
         rbtnMale.setText("Male");
 
@@ -128,10 +132,24 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
         lblTeamInfo.setText("Team Info:");
 
         rbtnGender.add(rbtnFemale);
+        rbtnFemale.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         rbtnFemale.setForeground(new java.awt.Color(0, 51, 204));
         rbtnFemale.setText("Female");
 
+        txtContact.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        txtContact.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtContactActionPerformed(evt);
+            }
+        });
+        txtContact.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtContactKeyPressed(evt);
+            }
+        });
+
         rbtnGender.add(rbtnOther);
+        rbtnOther.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         rbtnOther.setForeground(new java.awt.Color(0, 51, 204));
         rbtnOther.setText("Other");
 
@@ -143,8 +161,11 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
             }
         });
 
+        txtEmailId.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+
+        btnImage.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         btnImage.setForeground(new java.awt.Color(0, 0, 204));
-        btnImage.setText("Upload Image");
+        btnImage.setText("Browse Image");
         btnImage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnImageActionPerformed(evt);
@@ -167,10 +188,22 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
         lblPhoto.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblPhoto.setText("Photo:");
 
+        txtName.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         txtName.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNameKeyPressed(evt);
+            }
+        });
+
+        txtAge.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+
+        txtEmpID.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+
+        txtLevel.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
 
         lblTitle.setBackground(new java.awt.Color(102, 153, 255));
-        lblTitle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Comic Sans MS", 1, 24)); // NOI18N
         lblTitle.setForeground(new java.awt.Color(51, 0, 204));
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("EMPLOYEE DATABASE");
@@ -178,6 +211,7 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
 
         tblempRecords.setAutoCreateRowSorter(true);
         tblempRecords.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 51, 255), 1, true));
+        tblempRecords.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
         tblempRecords.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -274,7 +308,7 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
                                     .addComponent(jScrollPane1)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(37, 37, 37)
-                                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -348,7 +382,7 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
                                 .addComponent(txtTeamInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
-                                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblPhoto)
@@ -397,7 +431,7 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
         
         if(!(emailId.contains("@"))||!((emailId.endsWith(".com")) ||(emailId.endsWith(".edu")))||name.isBlank()||level.isBlank()||teamInfo.isBlank()||position.isBlank()||startDate.isBlank())
         {
-            JOptionPane.showMessageDialog(this, "Please enter all fields");
+            JOptionPane.showMessageDialog(this, "Please Enter Correct Details");
         }
         else
         {
@@ -417,6 +451,7 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
             txtPositionTitle.setText("");
             lblImage.setIcon(null);
             rbtnGender.clearSelection();
+            starrtDate.setDate(null);
         } 
     }//GEN-LAST:event_btnCreateActionPerformed
 
@@ -518,6 +553,7 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
                 rbtnOther.setSelected(true);
             }
         
+        //starrtDate.setDateFormatString(model.getValueAt(i, 4).toString());
         txtLevel.setText(model.getValueAt(i, 5).toString());
         txtTeamInfo.setText(model.getValueAt(i, 6).toString());
         txtPositionTitle.setText(model.getValueAt(i, 7).toString());
@@ -534,7 +570,7 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) tblempRecords.getModel();
+        model = (DefaultTableModel) tblempRecords.getModel();
         Vector<Vector> empdata = model.getDataVector();
         
         try
@@ -565,7 +601,7 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
             input.close();
             empfile.close();
             
-            DefaultTableModel model = (DefaultTableModel) tblempRecords.getModel();
+            model = (DefaultTableModel) tblempRecords.getModel();
             for(int i=0; i<empdata.size();i++)
             {
                 Vector row = empdata.get(i);
@@ -586,6 +622,43 @@ public class MainJFrameEmployee extends javax.swing.JFrame {
         tblempRecords.setRowSorter(trs);
         trs.setRowFilter(RowFilter.regexFilter(txtSearch.getText().trim()));
     }//GEN-LAST:event_txtSearchActionPerformed
+
+    private void txtContactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContactActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtContactActionPerformed
+
+    private void txtContactKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContactKeyPressed
+        // TODO add your handling code here:
+        String PhoneNo = txtContact.getText();
+        int length = PhoneNo.length();
+        char c =  evt.getKeyChar();
+        if(evt.getKeyChar()>= '0' && evt.getKeyChar()<='9')
+        {
+            if(length<10)
+            {
+                txtContact.setEditable(true);
+            }
+            else
+            {
+                txtContact.setEditable(false);
+                JOptionPane.showMessageDialog(this,"Not more than 10 digits");
+            }
+        }
+    }//GEN-LAST:event_txtContactKeyPressed
+
+    private void txtNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyPressed
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(Character.isLetter(c)||Character.isWhitespace(c)||Character.isISOControl(c))
+        {
+            txtName.setEditable(true);
+        }
+        else
+        {
+            txtName.setEditable(false);
+        }
+    }//GEN-LAST:event_txtNameKeyPressed
 
     /**
      * @param args the command line arguments
